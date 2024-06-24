@@ -6,7 +6,7 @@ import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.item.mapper.ItemMapper;
 import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.item.storage.ItemStorage;
-import ru.practicum.shareit.user.storage.UserStorage;
+import ru.practicum.shareit.user.service.UserService;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,12 +16,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
     private final ItemStorage itemStorage;
-    private final UserStorage userStorage;
+    private final UserService userService;
     private final ItemMapper itemMapper;
 
     @Override
     public ItemDto create(ItemDto itemDto, Long userId) {
-        userStorage.getUserById(userId);
+        userService.getUserById(userId);
         Item item = itemMapper.toItem(itemDto);
         item.setOwnerId(userId);
         return itemMapper.toItemDto(itemStorage.create(item));
@@ -29,7 +29,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemDto update(ItemDto itemDto, Long itemId, Long userId) {
-        userStorage.getUserById(userId);
+        userService.getUserById(userId);
         Item item = itemMapper.toItem(itemDto);
         return itemMapper.toItemDto(itemStorage.update(item, itemId, userId));
     }
