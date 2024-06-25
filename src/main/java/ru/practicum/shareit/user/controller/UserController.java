@@ -19,27 +19,27 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public UserDto create(@Valid @RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> create(@Valid @RequestBody UserDto userDto) {
         log.info("Post-запрос на добавление пользователя");
-        return ResponseEntity.ok().body(userService.create(userDto)).getBody();
+        return ResponseEntity.ok().body(userService.create(userDto));
     }
 
     @PatchMapping("/{userId}")
-    public UserDto update(@RequestBody UserDto userDto, @PathVariable(value = "userId") Long userId) {
+    public ResponseEntity<UserDto> update(@RequestBody UserDto userDto, @PathVariable(value = "userId") Long userId) {
         log.info("Patch-запрос на обновление пользователя с id={}", userId);
-        return ResponseEntity.ok().body(userService.update(userDto, userId)).getBody();
+        return ResponseEntity.ok().body(userService.update(userDto, userId));
     }
 
     @GetMapping("/{userId}")
-    public UserDto getUserById(@PathVariable Long userId) {
+    public ResponseEntity<UserDto> getUserById(@PathVariable Long userId) {
         log.info("Get-запрос на получение пользователя с id={}", userId);
-        return ResponseEntity.ok().body(userService.getUserById(userId)).getBody();
+        return ResponseEntity.ok().body(userService.getUserById(userId));
     }
 
     @GetMapping
-    public List<UserDto> getAllUsers() {
+    public ResponseEntity<List<UserDto>> getAllUsers() {
         log.info("Get-запрос на получение всех пользователей");
-        return ResponseEntity.ok().body(userService.getAllUsers()).getBody();
+        return ResponseEntity.ok().body(userService.getAllUsers());
     }
 
     @DeleteMapping("/{id}")

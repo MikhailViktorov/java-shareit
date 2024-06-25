@@ -15,36 +15,36 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 public class ItemController {
-    ItemService itemService;
+    private final ItemService itemService;
 
     @PostMapping
-    public ItemDto create(@Valid @RequestBody ItemDto itemDto, @RequestHeader("X-Sharer-User-Id") Long userId) {
+    public ResponseEntity<ItemDto> create(@Valid @RequestBody ItemDto itemDto, @RequestHeader("X-Sharer-User-Id") Long userId) {
         log.info("Post-запрос на добавление вещи {}", itemDto);
-        return ResponseEntity.ok().body(itemService.create(itemDto, userId)).getBody();
+        return ResponseEntity.ok().body(itemService.create(itemDto, userId));
     }
 
     @PatchMapping("/{itemId}")
-    public ItemDto update(@RequestBody ItemDto itemDto, @PathVariable Long itemId,
-                          @RequestHeader("X-Sharer-User-Id") Long userId) {
+    public ResponseEntity<ItemDto> update(@RequestBody ItemDto itemDto, @PathVariable Long itemId,
+                                          @RequestHeader("X-Sharer-User-Id") Long userId) {
         log.info("Patch-запрос на обновление вещи с id={}", itemId);
-        return ResponseEntity.ok().body(itemService.update(itemDto, itemId, userId)).getBody();
+        return ResponseEntity.ok().body(itemService.update(itemDto, itemId, userId));
     }
 
     @GetMapping("/{itemId}")
-    public ItemDto getItemById(@PathVariable Long itemId) {
+    public ResponseEntity<ItemDto> getItemById(@PathVariable Long itemId) {
         log.info("Get-запрос на получение вещи c id={}", itemId);
-        return ResponseEntity.ok().body(itemService.getItemById(itemId)).getBody();
+        return ResponseEntity.ok().body(itemService.getItemById(itemId));
     }
 
     @GetMapping
-    public List<ItemDto> getAllUserItems(@RequestHeader("X-Sharer-User-Id") Long id) {
+    public ResponseEntity<List<ItemDto>> getAllUserItems(@RequestHeader("X-Sharer-User-Id") Long id) {
         log.info("Get-запрос на получение вещей пользователя с id={}", id);
-        return ResponseEntity.ok().body(itemService.getAllUserItems(id)).getBody();
+        return ResponseEntity.ok().body(itemService.getAllUserItems(id));
     }
 
     @GetMapping("/search")
-    public List<ItemDto> searchItem(@RequestParam String text) {
+    public ResponseEntity<List<ItemDto>> searchItem(@RequestParam String text) {
         log.info("Get-запрос на поиск вещи по запросу «{}»", text);
-        return ResponseEntity.ok().body(itemService.searchItem(text)).getBody();
+        return ResponseEntity.ok().body(itemService.searchItem(text));
     }
 }
