@@ -12,42 +12,46 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ErrorHandler {
 
-    @ExceptionHandler(ValidationException.class)
+    @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleValidationException(final ValidationException e) {
         log.error("Получен статус 400 {}", e.getMessage());
-        return new ErrorResponse("Ошибка : " + e.getMessage());
+        return new ErrorResponse(e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handleNotFoundException(final NotFoundException e) {
         log.error("Получен статус 404 {}", e.getMessage());
-        return new ErrorResponse("Ошибка : " + e.getMessage());
+        return new ErrorResponse(e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
     public ErrorResponse handleConflictException(final ConflictException e) {
-        return new ErrorResponse("Ошибка : " + e.getMessage());
+        log.error("Получен статус 409 {}", e.getMessage());
+        return new ErrorResponse(e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleIllegalArgumentException(final IllegalArgumentException e) {
-        return new ErrorResponse("Ошибка : " + e.getMessage());
+        log.error("Получен статус 400 {}", e.getMessage());
+        return new ErrorResponse(e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleIllegalArgumentException(final MethodArgumentNotValidException e) {
-        return new ErrorResponse("Ошибка : " + e.getMessage());
+        log.error("Получен статус 400 {}", e.getMessage());
+        return new ErrorResponse(e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handlerException(final Throwable e) {
-        return new ErrorResponse("Ошибка : " + e.getMessage());
+        log.error("Получен статус 500 {}", e.getMessage());
+        return new ErrorResponse(e.getMessage());
     }
 
 
