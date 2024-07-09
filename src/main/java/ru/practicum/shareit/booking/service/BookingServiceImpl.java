@@ -71,8 +71,8 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public BookingDto getBooking(Long bookingId, Long userId) {
-        Booking booking = bookingRepository.findById(bookingId).
-                orElseThrow(() -> new NotFoundException("Бронирование не найдено"));
+        Booking booking = bookingRepository.findById(bookingId).orElseThrow(()
+                -> new NotFoundException("Бронирование не найдено"));
         if (!userId.equals(booking.getBooker().getId()) && !userId.equals(booking.getItem().getOwner().getId())) {
             throw new NotFoundException("Получение данных о бронировании может быть выполнено либо автором " +
                     "бронирования, либо владельцем вещи");
