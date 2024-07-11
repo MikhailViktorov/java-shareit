@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.practicum.shareit.item.comment.dto.CommentDto;
 import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.item.service.ItemService;
 
@@ -19,7 +20,7 @@ public class ItemController {
 
     @PostMapping
     public ResponseEntity<ItemDto> create(@Valid @RequestBody ItemDto itemDto, @RequestHeader("X-Sharer-User-Id") Long userId) {
-        log.info("Post-запрос на добавление вещи {}", itemDto);
+        log.info("Post-запрос на добавление вещи");
         return ResponseEntity.ok().body(itemService.create(itemDto, userId));
     }
 
@@ -31,9 +32,9 @@ public class ItemController {
     }
 
     @GetMapping("/{itemId}")
-    public ResponseEntity<ItemDto> getItemById(@PathVariable Long itemId) {
+    public ResponseEntity<ItemDto> getItemById(@PathVariable Long itemId, @RequestHeader("X-Sharer-User-Id") Long userId) {
         log.info("Get-запрос на получение вещи c id={}", itemId);
-        return ResponseEntity.ok().body(itemService.getItemById(itemId));
+        return ResponseEntity.ok().body(itemService.getItemById(itemId, userId));
     }
 
     @GetMapping
@@ -46,5 +47,13 @@ public class ItemController {
     public ResponseEntity<List<ItemDto>> searchItem(@RequestParam String text) {
         log.info("Get-запрос на поиск вещи по запросу «{}»", text);
         return ResponseEntity.ok().body(itemService.searchItem(text));
+    }
+
+    @PostMapping("{itemId}/comment")
+    public ResponseEntity<CommentDto> postComment(@RequestBody @Valid CommentDto commentDto, @PathVariable Long itemId,
+                                                  @RequestHeader("X-Sharer-User-Id") Long userId) {
+        log.info("Post запрос на добавление комментария для вещи id={}, от пользователя id={}",
+                itemId, userId);
+        return ResponseEntity.ok().body(itemService.postComment(commentDto, itemId, userId));
     }
 }
