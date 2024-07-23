@@ -73,7 +73,7 @@ public class ItemControllerTest {
     }
 
     @Test
-    public void CreateFailedName() throws Exception {
+    public void createFailedName() throws Exception {
         itemRequest.setName("");
 
         mvc.perform(
@@ -87,7 +87,7 @@ public class ItemControllerTest {
     }
 
     @Test
-    public void CreateFailedDescription() throws Exception {
+    public void createFailedDescription() throws Exception {
         itemRequest.setDescription("");
 
         mvc.perform(
@@ -101,7 +101,7 @@ public class ItemControllerTest {
     }
 
     @Test
-    public void CreateFailedAvailable() throws Exception {
+    public void createFailedAvailable() throws Exception {
         itemRequest.setAvailable(null);
 
         mvc.perform(
