@@ -22,7 +22,7 @@ public class BookingDtoTest {
     @SneakyThrows
     void testBookingDto() {
         bookingRequest = new BookingDto();
-        bookingRequest.setId(1l);
+        bookingRequest.setId(1L);
         bookingRequest.setStart(LocalDateTime.of(2024, 1, 1, 1, 1, 1));
         bookingRequest.setEnd(LocalDateTime.of(2024, 2, 2, 2, 2, 2));
         bookingRequest.setItemId(5L);
