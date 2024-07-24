@@ -1,5 +1,6 @@
 package ru.practicum.shareit.item.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +10,6 @@ import ru.practicum.shareit.item.dto.CreateItemRequest;
 import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.item.service.ItemService;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController

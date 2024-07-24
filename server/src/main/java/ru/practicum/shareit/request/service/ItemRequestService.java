@@ -1,9 +1,9 @@
 package ru.practicum.shareit.request.service;
 
+import jakarta.validation.Valid;
 import org.springframework.data.domain.PageRequest;
 import ru.practicum.shareit.request.dto.ItemRequestDto;
 
-import javax.validation.Valid;
 import java.util.List;
 
 public interface ItemRequestService {

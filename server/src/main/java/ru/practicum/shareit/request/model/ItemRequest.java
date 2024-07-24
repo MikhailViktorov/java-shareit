@@ -1,10 +1,10 @@
 package ru.practicum.shareit.request.model;
 
+import jakarta.persistence.*;
 import lombok.*;
 import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.user.model.User;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 

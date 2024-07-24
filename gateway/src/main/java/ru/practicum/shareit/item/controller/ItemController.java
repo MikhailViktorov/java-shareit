@@ -1,6 +1,9 @@
 package ru.practicum.shareit.item.controller;
 
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +14,7 @@ import ru.practicum.shareit.item.ItemClient;
 import ru.practicum.shareit.item.comment.dto.CommentRequestDto;
 import ru.practicum.shareit.item.dto.ItemRequestDto;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
+
 
 
 @Controller

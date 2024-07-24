@@ -1,13 +1,13 @@
 package ru.practicum.shareit.item.comment.dto;
 
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import ru.practicum.shareit.item.dto.ItemRequestDto;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
 
 @Getter
