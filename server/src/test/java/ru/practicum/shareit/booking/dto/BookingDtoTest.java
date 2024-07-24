@@ -16,15 +16,15 @@ public class BookingDtoTest {
     @Autowired
     private JacksonTester<BookingDto> json;
 
-    private  BookingDto bookingRequest;
+    private BookingDto bookingRequest;
 
     @Test
     @SneakyThrows
     void testBookingDto() {
         bookingRequest = new BookingDto();
         bookingRequest.setId(1l);
-        bookingRequest.setStart(LocalDateTime.of(2024,1,1,1,1,1));
-        bookingRequest.setEnd(LocalDateTime.of(2024,2,2,2,2,2));
+        bookingRequest.setStart(LocalDateTime.of(2024, 1, 1, 1, 1, 1));
+        bookingRequest.setEnd(LocalDateTime.of(2024, 2, 2, 2, 2, 2));
         bookingRequest.setItemId(5L);
         JsonContent<BookingDto> result = json.write(bookingRequest);
         assertThat(result).extractingJsonPathNumberValue("$.id").isEqualTo(1);

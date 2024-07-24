@@ -1,4 +1,4 @@
-package request.dto;
+package ru.practicum.shareit.request.dto;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
@@ -17,6 +17,7 @@ public class ItemRequestTest {
     private JacksonTester<ItemRequest> json;
     private final User requester = new User(1L, "testName", "testEmail@mail");
     private final ItemRequest response = new ItemRequest(1L, "desc", requester, null, null);
+
     @Test
     @SneakyThrows
     void shouldItemRequest() {
@@ -27,6 +28,7 @@ public class ItemRequestTest {
                 .isEqualTo("description");
 
     }
+
     @Test
     @SneakyThrows
     void shouldResponse() {

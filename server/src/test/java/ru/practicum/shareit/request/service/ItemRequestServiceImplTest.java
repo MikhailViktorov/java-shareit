@@ -1,4 +1,4 @@
-package request.service;
+package ru.practicum.shareit.request.service;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;

@@ -1,7 +1,6 @@
 package ru.practicum.shareit.item.controller;
 
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import ru.practicum.shareit.item.controller.ItemController;
 
 @WebMvcTest(controllers = ItemController.class)
 public class ItemControllerTest {
