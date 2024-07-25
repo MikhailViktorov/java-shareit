@@ -18,7 +18,7 @@ import ru.practicum.shareit.item.dto.ItemRequestDto;
 
 
 
-@Controller
+@RestController
 @RequestMapping(path = "/items")
 @RequiredArgsConstructor
 @Slf4j

@@ -9,6 +9,7 @@ services:
       - server
     environment:
       - SHAREIT_SERVER_URL=http://server:9090
+    restart: on-failure
 
   server:
     build: server
@@ -24,6 +25,7 @@ services:
       - POSTGRES_PASSWORD=12345
       - POSTGRES_DB_HOST=db
       - POSTGRES_DB_PORT=5432
+    restart: on-failure
 
   db:
     image: postgres:16.1
