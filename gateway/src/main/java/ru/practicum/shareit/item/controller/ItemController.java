@@ -59,8 +59,8 @@ public class ItemController {
             @RequestParam String text,
             @PositiveOrZero @RequestParam(required = false, defaultValue = "0") Integer from,
             @Positive @RequestParam(required = false, defaultValue = "10") Integer size) {
-        if (from < 0 || size < 1) {
-            throw new IllegalArgumentException("Некорректные параметры пагинации");
+        if (from < 0 || size < 0) {
+            throw new IllegalArgumentException("Некорректные параметры");
         }
         log.info("Получен запрос на поиск вещи по запросу «{}»", text);
         return itemClient.search(text, from, size);

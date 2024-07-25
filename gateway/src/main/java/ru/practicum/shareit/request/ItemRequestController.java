@@ -39,8 +39,8 @@ public class ItemRequestController {
                                          @PositiveOrZero @RequestParam(name = "from", defaultValue = "0") Integer from,
                                          @Positive @RequestParam(name = "size", defaultValue = "10") Integer size) {
         log.info("Получен запрос на получение списка запросов");
-        if (from < 0 || size < 1) {
-            throw new IllegalArgumentException("Некорректные параметры пагинации");
+        if (from < 0 || size < 0) {
+            throw new IllegalArgumentException("Некорректные параметры");
         }
         return itemRequestClient.getAll(userId, from, size);
     }
