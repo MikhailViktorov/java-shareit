@@ -36,10 +36,8 @@ public class ItemRequestServiceImpl implements ItemRequestService {
 
     @Override
     public List<ItemRequestDto> getRequestsByRequester(Long userId) {
-        Optional<User> user = userRepository.findById(userId);
-        if (user.isEmpty()) {
-            throw new NotFoundException("Пользователь не найден");
-        }
+        userRepository.findById(userId).orElseThrow(()
+                -> new NotFoundException("Пользователь не найден"));
         return itemRequestRepository.findAllByRequesterId(userId).stream()
                 .map(mapper::toItemRequestDto)
                 .collect(Collectors.toList());

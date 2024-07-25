@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -26,6 +27,7 @@ public class ItemController {
     private final ItemClient itemClient;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> saveItem(@RequestBody @Valid ItemRequestDto itemDto,
                                            @RequestHeader("X-Sharer-User-Id") Long userId) {
         log.info("Получен запрос на добавление вещи {}", itemDto);
@@ -48,7 +50,9 @@ public class ItemController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Object> patchItem(@RequestBody ItemRequestDto itemDto, @PathVariable Long id,
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Object> patchItem(@RequestBody ItemRequestDto itemDto,
+                                            @PathVariable Long id,
                                             @RequestHeader("X-Sharer-User-Id") Long userId) {
         log.info("Получен запрос на изменение вещи id={}", id);
         return itemClient.patchItem(itemDto, id, userId);
